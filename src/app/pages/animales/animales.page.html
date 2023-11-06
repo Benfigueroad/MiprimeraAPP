@@ -1,0 +1,36 @@
+<ion-toolbar>
+
+  <ion-buttons slot="start">
+    <ion-menu-button auto-hide="false"></ion-menu-button>
+  </ion-buttons>
+  <ion-title></ion-title>
+
+  <ion-buttons slot="secondary">
+    <ion-button>
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+    <ion-button>
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let animal of animalesDisponibles">
+    <img [alt]="animal.nombre" [src]="animal.imagen" />
+    <ion-card-header>
+      <ion-card-title>{{ animal.nombre }}</ion-card-title>
+      <ion-card-subtitle>Raza: {{ animal.raza }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{ animal.descripcion }}
+    </ion-card-content>
+    <ion-button expand="full" color="primary">Ponerse en contacto</ion-button>
+  </ion-card>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab-button (click)="nuevaAdopcion()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/animales"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nueva Adopción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <img alt="Imagen del animal" [src]="nuevoAnimal.imagen" />
+    <ion-card-header>
+      <ion-card-title>{{ nuevoAnimal.nombre }}</ion-card-title>
+      <ion-card-subtitle>Raza: {{ nuevoAnimal.raza }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{ nuevoAnimal.descripcion }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+    <ion-label position="floating">Nombre del animal</ion-label>
+    <ion-input type="text" [(ngModel)]="nuevoAnimal.nombre" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Raza del animal</ion-label>
+    <ion-input type="text" [(ngModel)]="nuevoAnimal.raza" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">URL de la imagen del animal</ion-label>
+    <ion-input type="text" [(ngModel)]="nuevoAnimal.imagen" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descripción del animal</ion-label>
+    <ion-textarea [(ngModel)]="nuevoAnimal.descripcion" required></ion-textarea>
+  </ion-item>
+
+  <ion-button expand="full" color="primary" (click)="guardarAdopcion()">Guardar Adopción</ion-button>
+</ion-content>
