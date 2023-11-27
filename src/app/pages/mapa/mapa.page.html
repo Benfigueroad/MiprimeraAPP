@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recupera tu contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="map-container" style="height: 300px;"></div>
+
+  <div *ngIf="weatherData">
+    <h2>Condiciones meteorológicas actuales:</h2>
+    <p>{{ weatherData.weather[0].description }}</p>
+    <p>Temperatura: {{ weatherData.main.temp }} °C</p>
+  </div>
+</ion-content>

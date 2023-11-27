@@ -6,7 +6,6 @@ import * as bcrypt from 'bcryptjs';
   providedIn: 'root'
 })
 export class BdserviceService {
-
   public database: SQLiteObject | null = null;
 
   constructor(private sqlite: SQLite) {
@@ -72,6 +71,32 @@ export class BdserviceService {
       console.log('Usuario insertado correctamente.');
     } catch (error) {
       console.error('Error al insertar usuario', error);
+    }
+  }
+
+  async verificarCredenciales(email: string, password: string): Promise<boolean> {
+    if (!this.database) {
+      console.error('No se ha inicializado la base de datos.');
+      return false;
+    }
+
+    const getUserQuery = `
+      SELECT * FROM usuarios WHERE email = ?
+    `;
+
+    try {
+      const result = await this.database.executeSql(getUserQuery, [email]);
+
+      if (result.rows.length > 0) {
+        const user = result.rows.item(0);
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        return passwordMatch;
+      } else {
+        return false; // Usuario no encontrado en la base de datos
+      }
+    } catch (error) {
+      console.error('Error al verificar credenciales', error);
+      return false;
     }
   }
 }
