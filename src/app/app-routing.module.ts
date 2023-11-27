@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'nueva-adopcion',
     loadChildren: () => import('./pages/nueva-adopcion/nueva-adopcion.module').then( m => m.NuevaAdopcionPageModule)
   },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule)
+  },
 ];
 
 @NgModule({

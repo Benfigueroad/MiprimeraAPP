@@ -7,6 +7,7 @@ import { AdopcionService } from '../../adopcion.service';
   templateUrl: './nueva-adopcion.page.html',
   styleUrls: ['./nueva-adopcion.page.scss'],
 })
+
 export class NuevaAdopcionPage {
   nuevoAnimal = {
     nombre: '',
@@ -17,9 +18,8 @@ export class NuevaAdopcionPage {
 
   constructor(private adopcionService: AdopcionService, private router: Router) { }
 
-  guardarAdopcion() {
-    this.adopcionService.guardarAdopcion(this.nuevoAnimal);
+  async guardarAdopcion() {
+    await this.adopcionService.guardarAdopcion(this.nuevoAnimal);
     this.router.navigate(['/animales']);
   }
 }
-

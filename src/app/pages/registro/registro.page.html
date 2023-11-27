@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form (ngSubmit)="guardar()">
     <ion-item lines="full">
       <ion-label position="floating">Nombre</ion-label>
       <ion-input type="text" required></ion-input>
@@ -27,7 +27,7 @@
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Registarse</ion-button>
+        <ion-button type="submit" color="danger" expand="block">Registrarse</ion-button>
       </ion-col>
     </ion-row>
   </form>
