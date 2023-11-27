@@ -35,6 +35,11 @@
   </ion-item>
 
   <ion-item>
+    <ion-label position="floating">Seleccionar imagen del animal</ion-label>
+    <ion-button expand="full" color="medium" (click)="seleccionarImagen()">Seleccionar</ion-button>
+  </ion-item>
+
+  <ion-item>
     <ion-label position="floating">Descripción del animal</ion-label>
     <ion-textarea [(ngModel)]="nuevoAnimal.descripcion" required></ion-textarea>
   </ion-item>
