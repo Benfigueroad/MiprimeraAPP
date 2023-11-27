@@ -13,15 +13,13 @@ export class RegistroPage implements OnInit {
     private bdService: BdserviceService,
     private toastController: ToastController,
     private navCtrl: NavController
-  ) {}
+  ) { }
 
   ngOnInit() {
-    // Llama a la función para inicializar la base de datos desde tu servicio
     this.bdService.initDatabase();
   }
 
   async guardar() {
-    // Insertar un nuevo usuario en la base de datos
     const nuevoUsuario = {
       nombre: 'John',
       apellido: 'Doe',
@@ -31,7 +29,7 @@ export class RegistroPage implements OnInit {
 
     await this.bdService.insertarUsuario(nuevoUsuario);
 
-    // Mostrar mensaje de usuario registrado
+
     const toast = await this.toastController.create({
       message: 'Usuario registrado correctamente',
       duration: 2000,
@@ -40,7 +38,7 @@ export class RegistroPage implements OnInit {
 
     await toast.present();
 
-    // Navegar a la página de animales
+
     this.navCtrl.navigateForward('/animales');
   }
 }

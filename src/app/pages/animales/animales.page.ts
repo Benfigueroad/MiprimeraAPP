@@ -19,14 +19,12 @@ export class AnimalesPage implements OnInit, OnDestroy {
     this.adopcionesSubscription = this.adopcionService.adopciones$.subscribe(adopciones => {
       this.animalesDisponibles = adopciones;
     });
-  
+
     this.adopcionService.obtenerAdopciones().then(() => {
-      // Puedes realizar cualquier otra lógica después de cargar las adopciones
     });
   }
 
   ngOnDestroy() {
-    // Desuscribe la suscripción para evitar fugas de memoria
     this.adopcionesSubscription.unsubscribe();
   }
 

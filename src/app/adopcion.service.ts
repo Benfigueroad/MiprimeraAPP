@@ -58,12 +58,12 @@ export class AdopcionService {
       console.error('No se ha inicializado la base de datos.');
       return;
     }
-  
+
     const insertQuery = `
       INSERT INTO adopciones (nombre, raza, imagen, descripcion)
       VALUES (?, ?, ?, ?)
     `;
-  
+
     try {
       await this.database.executeSql(insertQuery, [
         adopcion.nombre,
@@ -72,41 +72,38 @@ export class AdopcionService {
         adopcion.descripcion
       ]);
       console.log('Adopción guardada correctamente.');
-  
-      // Después de guardar, obtén las adopciones actualizadas
+
       const adopcionesActualizadas = await this.obtenerAdopciones();
-  
-      // Actualizar el BehaviorSubject con la nueva lista
+
       this.adopcionesSubject.next(adopcionesActualizadas);
     } catch (error) {
       console.error('Error al guardar adopción', error);
     }
   }
-  
 
-  async obtenerAdopciones(): Promise < any[] > {
-  if(!this.database) {
-  console.error('No se ha inicializado la base de datos.');
-  return [];
-}
 
-const query = `SELECT * FROM adopciones`;
+  async obtenerAdopciones(): Promise<any[]> {
+    if (!this.database) {
+      console.error('No se ha inicializado la base de datos.');
+      return [];
+    }
 
-try {
-  const result = await this.database.executeSql(query, []);
-  const adopciones = [];
+    const query = `SELECT * FROM adopciones`;
 
-  for (let i = 0; i < result.rows.length; i++) {
-    adopciones.push(result.rows.item(i));
-  }
+    try {
+      const result = await this.database.executeSql(query, []);
+      const adopciones = [];
 
-  // Actualizar el BehaviorSubject con la nueva lista
-  this.adopcionesSubject.next(adopciones);
+      for (let i = 0; i < result.rows.length; i++) {
+        adopciones.push(result.rows.item(i));
+      }
 
-  return adopciones;
-} catch (error) {
-  console.error('Error al obtener adopciones', error);
-  return [];
-}
+      this.adopcionesSubject.next(adopciones);
+
+      return adopciones;
+    } catch (error) {
+      console.error('Error al obtener adopciones', error);
+      return [];
+    }
   }
 }
