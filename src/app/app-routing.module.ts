@@ -24,14 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
-    path: 'tienda',
-    loadChildren: () => import('./pages/tienda/tienda.module').then( m => m.TiendaPageModule)
-  },
-  {
-    path: 'producto',
-    loadChildren: () => import('./pages/producto/producto.module').then( m => m.ProductoPageModule)
-  },
-  {
     path: 'animales',
     loadChildren: () => import('./pages/animales/animales.module').then( m => m.AnimalesPageModule)
   },
