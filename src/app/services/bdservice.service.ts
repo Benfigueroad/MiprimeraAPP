@@ -74,10 +74,10 @@ export class BdserviceService {
     }
   }
 
-  async verificarCredenciales(email: string, password: string): Promise<boolean> {
+  async verificarCredenciales(email: string, password: string): Promise<{ authenticated: boolean, user?: any }> {
     if (!this.database) {
       console.error('No se ha inicializado la base de datos.');
-      return false;
+      return { authenticated: false };
     }
 
     const getUserQuery = `
@@ -90,13 +90,13 @@ export class BdserviceService {
       if (result.rows.length > 0) {
         const user = result.rows.item(0);
         const passwordMatch = await bcrypt.compare(password, user.password);
-        return passwordMatch;
+        return { authenticated: passwordMatch, user: passwordMatch ? user : undefined };
       } else {
-        return false; // Usuario no encontrado en la base de datos
+        return { authenticated: false };
       }
     } catch (error) {
       console.error('Error al verificar credenciales', error);
-      return false;
+      return { authenticated: false };
     }
   }
 }
