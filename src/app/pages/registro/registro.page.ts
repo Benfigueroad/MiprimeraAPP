@@ -21,9 +21,10 @@ export class RegistroPage implements OnInit {
 
   async guardar() {
     const nuevoUsuario = {
-      nombre: 'John',
-      apellido: 'Doe',
-      email: 'john.doe@example.com',
+      nombre: 'Jo',
+      apellido: 'Do',
+      email: 'ejemplo@example.com',
+      telefono: '967845635',
       password: 'contrasena123'
     };
 

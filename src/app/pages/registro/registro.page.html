@@ -11,19 +11,23 @@
   <form (ngSubmit)="guardar()">
     <ion-item lines="full">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [(ngModel)]="nuevoUsuario.nombre" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [(ngModel)]="nuevoUsuario.apellido" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [(ngModel)]="nuevoUsuario.email" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevoUsuario.telefono"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" [(ngModel)]="nuevoUsuario.password" required></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
