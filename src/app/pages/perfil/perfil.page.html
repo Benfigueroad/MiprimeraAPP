@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil de Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      Información del Usuario
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>Nombre: {{ usuario.nombre }}</ion-label>
+      <ion-label>Apellido: {{ usuario.apellido }}</ion-label>
+      <ion-label>Correo: {{ usuario.email }}</ion-label>
+      <ion-label>Teléfono: {{ usuario.telefono }}</ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

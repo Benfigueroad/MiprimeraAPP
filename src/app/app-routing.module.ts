@@ -44,6 +44,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/mapa/mapa.module').then( m => m.MapaPageModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

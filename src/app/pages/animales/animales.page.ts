@@ -35,4 +35,8 @@ export class AnimalesPage implements OnInit, OnDestroy {
   abrirMapa() {
     this.navCtrl.navigateForward('/mapa');
   }
+
+  irAPerfil() {
+    this.router.navigate(['/perfil']);
+  }
 }

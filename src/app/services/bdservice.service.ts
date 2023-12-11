@@ -37,7 +37,8 @@ export class BdserviceService {
         nombre VARCHAR(50) NOT NULL,
         apellido VARCHAR(50) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        password VARCHAR(255) NOT NULL
+        password VARCHAR(255) NOT NULL,
+        telefono VARCHAR(9)
       )
     `;
 
@@ -56,8 +57,8 @@ export class BdserviceService {
     }
 
     const insertQuery = `
-      INSERT INTO usuarios (nombre, apellido, email, password)
-      VALUES (?, ?, ?, ?)
+      INSERT INTO usuarios (nombre, apellido, email, password, telefono)
+      VALUES (?, ?, ?, ?, ?)
     `;
 
     try {
@@ -66,7 +67,8 @@ export class BdserviceService {
         usuario.nombre,
         usuario.apellido,
         usuario.email,
-        hashedPassword
+        hashedPassword,
+        usuario.telefono
       ]);
       console.log('Usuario insertado correctamente.');
     } catch (error) {
@@ -97,6 +99,30 @@ export class BdserviceService {
     } catch (error) {
       console.error('Error al verificar credenciales', error);
       return { authenticated: false };
+    }
+  }
+
+  async obtenerUsuarioPorId(userId: string): Promise<any> {
+    if (!this.database) {
+      console.error('No se ha inicializado la base de datos.');
+      return null;
+    }
+
+    const getUserByIdQuery = `
+      SELECT * FROM usuarios WHERE id = ?
+    `;
+
+    try {
+      const result = await this.database.executeSql(getUserByIdQuery, [userId]);
+
+      if (result.rows.length > 0) {
+        return result.rows.item(0);
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener usuario por ID', error);
+      return null;
     }
   }
 }
