@@ -9,6 +9,8 @@ import { ToastController, NavController } from '@ionic/angular';
 })
 export class RegistroPage implements OnInit {
 
+  nuevoUsuario: any = {};
+
   constructor(
     private bdService: BdserviceService,
     private toastController: ToastController,
@@ -20,7 +22,8 @@ export class RegistroPage implements OnInit {
   }
 
   async guardar() {
-    const nuevoUsuario = {
+
+    this.nuevoUsuario = {
       nombre: 'Jo',
       apellido: 'Do',
       email: 'ejemplo@example.com',
@@ -28,8 +31,7 @@ export class RegistroPage implements OnInit {
       password: 'contrasena123'
     };
 
-    await this.bdService.insertarUsuario(nuevoUsuario);
-
+    await this.bdService.insertarUsuario(this.nuevoUsuario);
 
     const toast = await this.toastController.create({
       message: 'Usuario registrado correctamente',
@@ -38,7 +40,6 @@ export class RegistroPage implements OnInit {
     });
 
     await toast.present();
-
 
     this.navCtrl.navigateForward('/animales');
   }
